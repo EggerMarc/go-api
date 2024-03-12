@@ -1,17 +1,17 @@
 package handlers
 
 import (
-    "encoding/json"
-    "net/http"
+	"encoding/json"
+	"net/http"
 
-    "github.com/eggermarc/go-api/api"
-    "github.com/eggermarc/go-api/internal/tools"
-    log "github.com/sirupsen/logrus"
-    "github.com/gorilla/schema"
+	"github.com/eggermarc/go-api/api"
+	"github.com/eggermarc/go-api/internal/tools"
+	"github.com/gorilla/schema"
+	log "github.com/sirupsen/logrus"
 )
 
 func GetUserBalance(w http.ResponseWriter, r *http.Request) {
-    var params = api.UserBalanceParams{}
+    var params = api.AccountBalanceParams{}
     var decoder *schema.Decoder = schema.NewDecoder()
     var err error
 

@@ -1,12 +1,12 @@
 package middleware
 
 import (
-    "errors"
-    "net/http"
+	"errors"
+	"net/http"
 
-    "github.com/eggermarc/go-api/api"
-    "github.com/eggermarc/go-api/internal/tools"
-    log "github.com/sirupsen/logrus"
+	"github.com/eggermarc/go-api/api"
+	"github.com/eggermarc/go-api/internal/tools"
+	log "github.com/sirupsen/logrus"
 )
 
 // Create an Unauthorized error
@@ -22,7 +22,7 @@ func Authorization(next http.Handler) http.Handler {
         // get the token from http
         var token = r.Header.Get("Authorization")
         // set an error variable
-        var error error
+        var err error
 
         // if no username or token passed, throw error
         if username == "" || token == "" {
@@ -42,7 +42,7 @@ func Authorization(next http.Handler) http.Handler {
         }
 
         // set a pointer to the loging
-        var loginDetails *tools.loginDetails
+        var loginDetails *tools.LoginDetails
         // from the database, get the logins
         loginDetails = (*database).GetUserLoginDetails(username)
 
@@ -53,7 +53,7 @@ func Authorization(next http.Handler) http.Handler {
         }
 
         // calls in the next middleware or endpoint
-        next.Serve(w, r)
+        next.ServeHTTP(w, r)
     })
 }
 

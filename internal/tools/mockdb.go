@@ -1,7 +1,7 @@
 package tools
 
 import (
-    "time"
+	"time"
 )
 
 type mockDB struct{}
@@ -22,7 +22,7 @@ var mockLoginDetails = map[string]LoginDetails {
     "patricia": {
         AuthToken: "2m1ss1",
         Username: "patricia",
-    }
+    },
 }
 
 var mockBalanceDetails = map[string]BalanceDetails {
@@ -43,11 +43,11 @@ var mockBalanceDetails = map[string]BalanceDetails {
         Balance: 1021,
         Username: "patricia",
 
-    }
+    },
 }
 
 func (d *mockDB) GetUserLoginDetails(username string) *LoginDetails {
-    time.Sleep(time.Milliseconds * 20)
+    time.Sleep(time.Millisecond * 20)
     var clientData = LoginDetails{}
 
     clientData, ok := mockLoginDetails[username]
@@ -57,8 +57,8 @@ func (d *mockDB) GetUserLoginDetails(username string) *LoginDetails {
     return &clientData
 }
 
-func (d *mockDB) GetUserBalanceDetails(username string) *BalanceDetails {
-    time.sleep(time.Milliseconds * 20)
+func (d *mockDB) GetUserBalance(username string) *BalanceDetails {
+    time.Sleep(time.Millisecond * 20)
     var clientData = BalanceDetails{}
 
     clientData, ok := mockBalanceDetails[username]
